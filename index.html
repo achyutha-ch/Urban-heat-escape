@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Urban Heat Escape Assistant</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+</head>
+
+<body>
+
+    <!-- NAVIGATION -->
+    <nav class="navbar">
+
+        <div class="logo">
+            <div class="logo-icon">🌡️</div>
+
+            <div>
+                <h2>HeatEscape</h2>
+                <span>AI Sustainability Assistant</span>
+            </div>
+        </div>
+
+        <div class="nav-links">
+            <a href="#dashboard">Dashboard</a>
+            <a href="#heatmap">Heat Map</a>
+            <a href="#routes">Routes</a>
+            <a href="#assistant">AI Assistant</a>
+        </div>
+
+        <button class="nav-button" onclick="scrollToSection('assistant')">
+            Ask AI
+        </button>
+
+    </nav>
+
+
+    <!-- HERO -->
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <div class="tag">
+                🌱 AI FOR CLIMATE-RESILIENT CITIES
+            </div>
+
+            <h1>
+                Find cooler paths.<br>
+                <span>Build greener cities.</span>
+            </h1>
+
+            <p>
+                An AI-powered assistant that helps you understand urban heat,
+                discover relatively cooler routes, and find opportunities
+                for greener and more climate-resilient spaces.
+            </p>
+
+            <div class="hero-buttons">
+
+                <button
+                    class="primary-btn"
+                    onclick="scrollToSection('routes')"
+                >
+                    🚶 Find a Cooler Route
+                </button>
+
+                <button
+                    class="secondary-btn"
+                    onclick="scrollToSection('heatmap')"
+                >
+                    🗺️ Explore Heat Map
+                </button>
+
+            </div>
+
+        </div>
+
+        <div class="hero-card">
+
+            <div class="mini-header">
+                <span>LIVE DEMO</span>
+                <span class="status">● Prototype Data</span>
+            </div>
+
+            <div class="temperature">
+                <span>32°</span>
+                <small>Estimated</small>
+            </div>
+
+            <div class="heat-level">
+                <span>Current Heat Level</span>
+                <strong>Moderate</strong>
+            </div>
+
+            <div class="mini-progress">
+                <div></div>
+            </div>
+
+            <p class="small-note">
+                Sample environmental data for demonstration.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- DASHBOARD -->
+    <section id="dashboard" class="section">
+
+        <div class="section-heading">
+
+            <div>
+                <span class="eyebrow">OVERVIEW</span>
+
+                <h2>
+                    Urban Heat Dashboard
+                </h2>
+
+                <p>
+                    Understand heat conditions across the selected area.
+                </p>
+            </div>
+
+            <select id="locationSelect" onchange="changeLocation()">
+
+                <option value="campus">
+                    University Campus
+                </option>
+
+                <option value="city">
+                    Central City
+                </option>
+
+                <option value="residential">
+                    Residential Area
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="stats-grid">
+
+            <div class="stat-card">
+
+                <div class="stat-icon">🌡️</div>
+
+                <div>
+                    <span>Estimated Temperature</span>
+                    <h3 id="temperatureValue">32°C</h3>
+                </div>
+
+                <small class="warning">
+                    Moderate
+                </small>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">🔥</div>
+
+                <div>
+                    <span>Heat Risk</span>
+                    <h3 id="riskValue">Medium</h3>
+                </div>
+
+                <small>
+                    Current estimate
+                </small>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">🌳</div>
+
+                <div>
+                    <span>Green Coverage</span>
+                    <h3 id="greenValue">42%</h3>
+                </div>
+
+                <small class="positive">
+                    Good coverage
+                </small>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">💧</div>
+
+                <div>
+                    <span>Shade Availability</span>
+                    <h3 id="shadeValue">58%</h3>
+                </div>
+
+                <small>
+                    Estimated
+                </small>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- HEAT MAP -->
+    <section id="heatmap" class="section light-section">
+
+        <div class="section-heading">
+
+            <div>
+
+                <span class="eyebrow">
+                    ENVIRONMENTAL ANALYSIS
+                </span>
+
+                <h2>
+                    Heat Risk Map
+                </h2>
+
+                <p>
+                    Explore heat-prone and relatively cooler areas.
+                </p>
+
+            </div>
+
+            <div class="legend">
+
+                <span>
+                    <i class="low"></i>
+                    Low
+                </span>
+
+                <span>
+                    <i class="medium"></i>
+                    Medium
+                </span>
+
+                <span>
+                    <i class="high"></i>
+                    High
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="map-container">
+
+            <div class="map-grid">
+
+                <!-- BUILDINGS -->
+
+                <div class="map-building building-1">
+                    <span>Library</span>
+                </div>
+
+                <div class="map-building building-2">
+                    <span>Academic Block</span>
+                </div>
+
+                <div class="map-building building-3">
+                    <span>Parking</span>
+                </div>
+
+                <div class="map-building building-4">
+                    <span>Student Center</span>
+                </div>
+
+
+                <!-- GREEN AREAS -->
+
+                <div class="green-zone zone-1">
+                    🌳
+                </div>
+
+                <div class="green-zone zone-2">
+                    🌳 🌳
+                </div>
+
+
+                <!-- ROADS -->
+
+                <div class="road road-horizontal"></div>
+
+                <div class="road road-vertical"></div>
+
+
+                <!-- HEAT ZONES -->
+
+                <div
+                    class="heat-zone heat-high"
+                    onclick="showZone('Parking Area', 'High', 'Very Low')"
+                >
+                    <span>High</span>
+                </div>
+
+                <div
+                    class="heat-zone heat-medium"
+                    onclick="showZone('Main Gate', 'Medium', 'Low')"
+                >
+                    <span>Medium</span>
+                </div>
+
+                <div
+                    class="heat-zone heat-low"
+                    onclick="showZone('Central Garden', 'Low', 'High')"
+                >
+                    <span>Low</span>
+                </div>
+
+            </div>
+
+
+            <div class="map-info">
+
+                <h3>Selected Area</h3>
+
+                <div id="zoneInfo">
+
+                    <p>
+                        Click a heat zone to see environmental information.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ROUTE FINDER -->
+    <section id="routes" class="section">
+
+        <div class="section-heading">
+
+            <div>
+
+                <span class="eyebrow">
+                    AI DECISION SUPPORT
+                </span>
+
+                <h2>
+                    Find a Cooler Route
+                </h2>
+
+                <p>
+                    Compare routes based on distance, shade and estimated heat exposure.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="route-box">
+
+            <div class="input-group">
+
+                <label>Starting Point</label>
+
+                <select id="startPoint">
+
+                    <option>Main Gate</option>
+                    <option>Parking Area</option>
+                    <option>Hostel</option>
+                    <option>Bus Stop</option>
+
+                </select>
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label>Destination</label>
+
+                <select id="destination">
+
+                    <option>Library</option>
+                    <option>Academic Block</option>
+                    <option>Student Center</option>
+                    <option>Central Garden</option>
+
+                </select>
+
+            </div>
+
+
+            <button
+                class="primary-btn route-button"
+                onclick="findCoolerRoute()"
+            >
+                🤖 Find Best Route
+            </button>
+
+        </div>
+
+
+        <div
+            id="routeResult"
+            class="route-result hidden"
+        >
+
+            <div class="route-recommendation">
+
+                <div class="recommendation-icon">
+                    🌿
+                </div>
+
+                <div>
+
+                    <span class="recommended">
+                        AI RECOMMENDATION
+                    </span>
+
+                    <h3 id="routeTitle">
+                        Green Corridor
+                    </h3>
+
+                    <p id="routeDescription">
+                        This route provides greater shade coverage
+                        and lower estimated heat exposure.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="route-metrics">
+
+                <div>
+                    <span>Distance</span>
+                    <strong id="routeDistance">
+                        850 m
+                    </strong>
+                </div>
+
+                <div>
+                    <span>Shade Coverage</span>
+                    <strong id="routeShade">
+                        72%
+                    </strong>
+                </div>
+
+                <div>
+                    <span>Heat Exposure</span>
+                    <strong id="routeHeat">
+                        Low
+                    </strong>
+                </div>
+
+                <div>
+                    <span>Estimated Time</span>
+                    <strong id="routeTime">
+                        11 min
+                    </strong>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- GREEN RECOMMENDATIONS -->
+    <section class="section green-section">
+
+        <div class="section-heading">
+
+            <div>
+
+                <span class="eyebrow">
+                    AI SUSTAINABILITY INSIGHTS
+                </span>
+
+                <h2>
+                    Make Your Campus Cooler
+                </h2>
+
+                <p>
+                    AI-generated recommendations for reducing urban heat.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="recommendation-grid">
+
+            <div class="recommendation-card">
+
+                <div class="rec-icon">
+                    🌳
+                </div>
+
+                <h3>
+                    Increase Tree Cover
+                </h3>
+
+                <p>
+                    Plant shade-producing trees along frequently used
+                    pedestrian pathways.
+                </p>
+
+                <span>
+                    Potential impact: High
+                </span>
+
+            </div>
+
+
+            <div class="recommendation-card">
+
+                <div class="rec-icon">
+                    🏡
+                </div>
+
+                <h3>
+                    Create Green Corridors
+                </h3>
+
+                <p>
+                    Connect existing green spaces with shaded pedestrian
+                    pathways.
+                </p>
+
+                <span>
+                    Potential impact: High
+                </span>
+
+            </div>
+
+
+            <div class="recommendation-card">
+
+                <div class="rec-icon">
+                    ☀️
+                </div>
+
+                <h3>
+                    Reduce Heat-Absorbing Surfaces
+                </h3>
+
+                <p>
+                    Consider reflective or permeable materials for large
+                    paved areas.
+                </p>
+
+                <span>
+                    Potential impact: Medium
+                </span>
+
+            </div>
+
+
+            <div class="recommendation-card">
+
+                <div class="rec-icon">
+                    🪑
+                </div>
+
+                <h3>
+                    Add Shaded Rest Areas
+                </h3>
+
+                <p>
+                    Provide shaded seating near high-traffic pedestrian
+                    zones.
+                </p>
+
+                <span>
+                    Potential impact: Medium
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- AI ASSISTANT -->
+    <section id="assistant" class="section">
+
+        <div class="assistant-container">
+
+            <div class="assistant-intro">
+
+                <span class="eyebrow">
+                    CONVERSATIONAL AI
+                </span>
+
+                <h2>
+                    Ask the HeatEscape AI
+                </h2>
+
+                <p>
+                    Ask questions about urban heat, greener routes,
+                    or ways to make your surroundings more climate-resilient.
+                </p>
+
+
+                <div class="suggested-questions">
+
+                    <button onclick="askQuestion('How can my campus reduce urban heat?')">
+                        How can my campus reduce urban heat?
+                    </button>
+
+                    <button onclick="askQuestion('Which areas need more trees?')">
+                        Which areas need more trees?
+                    </button>
+
+                    <button onclick="askQuestion('Why is the parking area hotter?')">
+                        Why is the parking area hotter?
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="chat-container">
+
+                <div class="chat-header">
+
+                    <div class="ai-avatar">
+                        🤖
+                    </div>
+
+                    <div>
+                        <strong>HeatEscape AI</strong>
+                        <span>● Online</span>
+                    </div>
+
+                </div>
+
+
+                <div
+                    id="chatMessages"
+                    class="chat-messages"
+                >
+
+                    <div class="message ai-message">
+
+                        <div class="avatar">
+                            🤖
+                        </div>
+
+                        <div class="bubble">
+
+                            Hi! I'm HeatEscape AI 🌱
+
+                            <br><br>
+
+                            I can help you understand urban heat,
+                            compare routes, and suggest ways to make
+                            your surroundings greener.
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="chat-input">
+
+                    <input
+                        type="text"
+                        id="userInput"
+                        placeholder="Ask something about urban heat..."
+                        onkeydown="handleEnter(event)"
+                    >
+
+                    <button onclick="sendMessage()">
+                        ➤
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- RESPONSIBLE AI -->
+    <section class="responsible-section">
+
+        <div class="responsible-container">
+
+            <span class="eyebrow">
+                RESPONSIBLE AI
+            </span>
+
+            <h2>
+                Built with responsible AI principles
+            </h2>
+
+
+            <div class="responsible-grid">
+
+                <div>
+                    <strong>⚖️ Fairness</strong>
+                    <p>
+                        Use representative environmental information
+                        across different areas.
+                    </p>
+                </div>
+
+                <div>
+                    <strong>🔍 Transparency</strong>
+                    <p>
+                        Clearly communicate that prototype heat
+                        information is estimated.
+                    </p>
+                </div>
+
+                <div>
+                    <strong>🛡️ Privacy</strong>
+                    <p>
+                        Avoid collecting unnecessary personal
+                        information or location history.
+                    </p>
+                </div>
+
+                <div>
+                    <strong>💚 Ethics</strong>
+                    <p>
+                        Recommendations should support users without
+                        replacing official heat warnings.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer>
+
+        <div>
+
+            <strong>
+                🌡️ HeatEscape
+            </strong>
+
+            <p>
+                AI for climate-resilient and sustainable cities.
+            </p>
+
+        </div>
+
+
+        <div class="sdg-badge">
+
+            <span>
+                PRIMARY SDG
+            </span>
+
+            <strong>
+                SDG 11
+            </strong>
+
+            <small>
+                Sustainable Cities & Communities
+            </small>
+
+        </div>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
